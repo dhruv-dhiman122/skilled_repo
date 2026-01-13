@@ -42,5 +42,8 @@ int main(int argv, char* argc[]) {
 	
 	const char* user_name = argc[1];
 
+	pthread_create(&thread, NULL, dir_print, (void*)user_name);
+	pthread_join(thread, NULL);
+
 	exit(EXT_SUCCESS);
 }
