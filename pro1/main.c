@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <dirent.h>
 #include <sys/types.h>
+#include <string.h>
 
 //============================ Space for the macro ====================================//
 #define EXT_SUCCESS 0
@@ -15,6 +16,7 @@
 
 pthread_mutex_t mutex_lock;
 pthread_t thread;
+const char* fileName;
 
 //================================ Space for user defined function ===============================//
 
@@ -24,9 +26,25 @@ void* dir_print(void* arg) { // function for printing the element of the dict
 	DIR* dir;
 	struct dirent* entry;
 	dir = opendir(FunctionName);
+	//printing the element of the dict
 	while((entry = readdir(dir)) != NULL) {
 		printf("%s\n",entry->d_name);
 	}
+	//asking the name of the file from the dict
+	printf("Enter the file you want edit\n");
+	char functionFileName[256];
+	if(fgets(functionFileName,sizeof(functionFileName), stdin) == NULL) {
+		printf("ERR!! FAILED TO TAKE INPUT FOR THE FILE");
+		exit(INPUT_ERR);
+	}
+	fileName = (const char*) functionFileName;
+	pthread_mutex_unlock(&mutex_lock);
+	return NULL;
+}
+
+void* fileControl(void* arg) { // doing with the file work
+	pthread_mutex_lock(&mutex_lock);
+	
 	pthread_mutex_unlock(&mutex_lock);
 	return NULL;
 }
