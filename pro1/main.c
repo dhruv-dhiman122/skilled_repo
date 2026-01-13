@@ -5,10 +5,17 @@
 #include <fcntl.h>
 #include <dirent.h>
 
+//============================ Space for the macro ====================================//
 #define EXT_SUCCESS 0
 #define EXT_FAILURE 1
 #define INPUT_ERR 0
+//============================= Space for the global variable ==============================//
 
+
+//================================ Space for user defined function ===============================//
+
+
+//==================================== Space for the main function ==============================//
 int main(int argv, char* argc[]) {
 	
 	if(argv < 2) { // taking the file name from the user
