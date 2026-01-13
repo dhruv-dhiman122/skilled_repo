@@ -11,6 +11,8 @@
 #define INPUT_ERR 0
 //============================= Space for the global variable ==============================//
 
+pthread_mutex_t mutex_lock;
+pthread_t thread;
 
 //================================ Space for user defined function ===============================//
 
